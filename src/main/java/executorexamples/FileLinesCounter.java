@@ -1,4 +1,4 @@
-package ExecutorExamples;
+package executorexamples;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class FileLinesCounter {
-    private Path dir = Paths.get("src", "main", "java", "ExecutorExamples");
+    private Path dir = Paths.get("src", "main", "java", "executorexamples");
 
     public long computeTotalNumberOfLines() {
         long total = 0;

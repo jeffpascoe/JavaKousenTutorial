@@ -1,4 +1,4 @@
-package ExecutorExamples;
+package executorexamples;
 
 import java.util.concurrent.Callable;
 

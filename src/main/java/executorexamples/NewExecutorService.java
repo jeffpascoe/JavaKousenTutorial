@@ -1,32 +1,30 @@
-package ExecutorExamples;
+package executorexamples;
 
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ExecutorServiceExample {
+public class NewExecutorService {
 
     public static void main(String[] args) {
+
         List<Callable<String>> callables = Stream.iterate(0, n -> n + 1)
                 .limit(10)
-                .map(MyCallable::new)
+                .map(YourCallable::new)
                 .collect(Collectors.toList());
 
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        ExecutorService executor = Executors.newFixedThreadPool(10);
 
         try {
-            List<Future<String>> futures = executorService.invokeAll(callables);
-
-            for(Future<String> future : futures) {
+            List<Future<String>> futures = executor.invokeAll(callables);
+            for(Future future : futures) {
                 System.out.println(future.get());
             }
-        } catch(InterruptedException | ExecutionException e){
+        } catch(InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
-            executorService.shutdown();
+            executor.shutdown();
         }
-
-
     }
 }

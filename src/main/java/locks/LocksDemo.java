@@ -8,6 +8,7 @@ public class LocksDemo {
     Counter counter = new Counter();
     SyncCounter syncCounter = new SyncCounter();
     LockedCounter lockCounter = new LockedCounter();
+    AtomicCounter atomicCounter = new AtomicCounter();
 
     public void demoCounter() {
         ExecutorService service = Executors.newCachedThreadPool();
@@ -30,10 +31,18 @@ public class LocksDemo {
                 .forEach(i -> service.submit(lockCounter::increment));
         System.out.println("LockCounter count=" + lockCounter.getCount());
     }
+
+    public void demoAtomicCounter() {
+        ExecutorService service = Executors.newCachedThreadPool();
+        IntStream.range(0, 1000)
+                .forEach(i -> service.submit(atomicCounter::increment));
+        System.out.println("AtomicCounter count=" + atomicCounter.getCount());
+    }
     public static void main(String[] args) {
         LocksDemo locksDemo = new LocksDemo();
-//        locksDemo.demoCounter();
-//        locksDemo.demoSyncCounter();
+        locksDemo.demoCounter();
+        locksDemo.demoSyncCounter();
         locksDemo.demoLockedCounter();
+        locksDemo.demoAtomicCounter();
     }
 }
