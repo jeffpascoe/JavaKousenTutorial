@@ -12,7 +12,6 @@ public class MyCallable implements Callable<String> {
     public String call() throws Exception {
         return String.format("%s using thread %s",
                 this, Thread.currentThread().getName());
-
     }
 
     @Override
